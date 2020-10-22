@@ -1,15 +1,27 @@
 require "nanowrimoijk_palindrome/version"
 
-class String
+module NanoPalindrome
 
   def palindrome?
-    processed_content == processed_content.reverse
+    if processed_content.empty?
+      false
+    else
+      processed_content == processed_content.reverse
+    end
   end
 
   private
 
   def processed_content
-    scan(/[a-z]/i).join.downcase
+    to_s.scan(/[a-z|\d]/i).join.downcase
   end
 
+end
+
+class String
+  include NanoPalindrome
+end
+
+class Integer
+  include NanoPalindrome
 end
